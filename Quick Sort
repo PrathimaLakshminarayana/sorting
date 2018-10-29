@@ -1,0 +1,54 @@
+
+public class QuickSort {
+
+	public static void main(String args[]) {
+
+		int a[] = { 2, 3, 4, 1, 5};
+		System.out.println(" before sorting");
+		printSortedValues(a);
+		qSort(a, 0, a.length - 1);
+		System.out.println(" after sorting");
+		printSortedValues(a);
+	}
+
+	private static void qSort(int[] a, int low, int high) {
+
+		if (low < high) {
+			int pi = partition(a, low, high);
+			System.out.println(" \n");
+			printSortedValues(a);
+			qSort(a, low, pi - 1);
+			qSort(a, pi + 1, high);
+		}
+
+	}
+
+	private static int partition(int[] arr, int low, int high) {
+		int pivot = arr[high];
+		int pIndex = low; 
+		int temp ;
+		for (int j = low; j < high; j++) {
+			if (arr[j] <= pivot) {
+				temp = arr[pIndex];
+				arr[pIndex] = arr[j];
+				arr[j] = temp;
+				System.out.println(1);
+				
+				pIndex++;
+			}
+		}
+
+		// swap pIndex and arr[high] (or pivot)
+		temp = arr[pIndex];
+		arr[pIndex ] = arr[high];
+		arr[high] = temp;
+
+		return pIndex;
+	}
+
+	private static void printSortedValues(int[] a) {
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(" " + a[i]);
+		}
+	}
+}
